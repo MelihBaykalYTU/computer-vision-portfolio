@@ -58,9 +58,9 @@ I am developing an independent portal for Yıldız Technical University students
 
 ## Optimization algorithms from scratch
 
-**C implementation with Python visualization**
+**Two-person course project · December 2024 · C and Python**
 
-I implemented Gradient Descent, SGD, Adagrad and Adam in C for binary image classification without high-level machine-learning libraries. Python visualizations supported inspection of training behavior and evaluation metrics.
+In a two-person course project, we implemented and compared Gradient Descent, SGD and Adam in C for binary Fashion-MNIST classification. Python visualizations supported inspection of training behavior and evaluation metrics.
 
 **Focus:** translating mathematical update rules into executable training loops.
 
