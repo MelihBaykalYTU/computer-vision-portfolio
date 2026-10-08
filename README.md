@@ -2,7 +2,7 @@
 
 Computer Engineering student at **Yıldız Technical University**, based in Istanbul. **Expected graduation: June 2027 · GPA: 3.39/4.00.**
 
-My main focus is computer vision and deep learning: object detection, image classification, visual localization and PyTorch model development. This repository presents selected project case studies and the role I held in each.
+My main focus is computer vision and deep learning: object detection, image classification, visual localization and PyTorch model development. This repository presents selected project case studies, the role I held in each, and a separately attributed learning companion with runnable code.
 
 [LinkedIn](https://www.linkedin.com/in/melih-baykal) · [Contact](mailto:melih.baykal@std.yildiz.edu.tr)
 
@@ -65,6 +65,10 @@ In a two-person course project, we implemented and compared Gradient Descent, SG
 **Focus:** translating mathematical update rules into executable training loops.
 
 [Project report](https://online.yildiz.edu.tr/upload/ytu-test/Evaluation/23011505_MEL%C4%B0H_BAYKAL_e7a981fc-76db-4549-8dcd-c221084bfcb5.pdf)
+
+The original coursework was jointly authored by **Ceyda Tolunay and Melih Baykal**; its original source files are currently unavailable.
+
+[Runnable GD, SGD and Adam learning companion](demos/optimizer-comparison): a **new AI-assisted C/Python implementation created on 8 October 2026**, with validation-based learning-rate selection, held-out test evaluation, numerical checks and reproducible run artifacts. Its code and measured results are separate from the original 2024 project.
 
 ## Related experience
 
