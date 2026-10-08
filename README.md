@@ -2,7 +2,7 @@
 
 Computer Engineering student at **Yıldız Technical University**, based in Istanbul. **Expected graduation: June 2027 · GPA: 3.39/4.00.**
 
-My main focus is computer vision and deep learning: object detection, image classification, visual localization and PyTorch model development. This repository presents selected project case studies, the role I held in each, and a separately attributed learning companion with runnable code.
+My main focus is computer vision and deep learning: object detection, image classification, visual localization and PyTorch model development. This repository presents selected project case studies, the role I held in each, and separately attributed learning companions with runnable code.
 
 [LinkedIn](https://www.linkedin.com/in/melih-baykal) · [Contact](mailto:melih.baykal@std.yildiz.edu.tr)
 
@@ -75,6 +75,14 @@ The original coursework was jointly authored by **Ceyda Tolunay and Melih Baykal
 - **Koç University IT Intern, August–September 2026:** Gemini API applications, RAG, AI agents, load testing and technical research.
 - **TEKNOFEST Sağlıkta Yapay Zeka Team Leader, 2025:** led a four-person team working on U-Net segmentation and CNN classification for MRI stroke detection.
 - **YTÜ SKY LAB AIR LAB, 2024–present:** Video Understanding training, technical presentations and mentoring.
+
+## Runnable computer vision evaluation
+
+[OpenCV planar reference-matching learning companion](demos/reference-matching-evaluation) — **new AI-assisted educational example created on 8 October 2026**.
+
+The CPU-only pipeline combines ORB descriptors, Hamming matching, a ratio test and RANSAC homography estimation. It includes deterministic synthetic scenes, geometric acceptance checks, separate development/test seeds, corner localization errors and an illustrated failure analysis.
+
+On its 24 synthetic test cases, the fixed configuration detected 8 of 12 positive cases and rejected all 12 negative cases. Small blurred targets and one occluded target exposed failures. These measurements describe this small experiment; the code and results are separate from the VEGA competition work.
 
 ## Opportunities
 
