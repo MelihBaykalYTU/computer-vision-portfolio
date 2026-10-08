@@ -22,6 +22,28 @@ Our TEKNOFEST team used Roboflow for image annotation.
 
 [Competition specification](https://cdn.t3kys.com/media/uploads/2026/09/15/leuhL1QEivLoMjz0AVIxAuacpB1vZS3n.pdf)
 
+<details>
+<summary>Recorded team evaluation: the false-positive / missed-person trade-off</summary>
+
+This case study summarizes **VEGA team records dated 12 September 2026**. My confirmed role was team captain; implementation and measurements are attributed to the team. This documentation was prepared from existing reports: **the models were not rerun for this portfolio**.
+
+The problem was to reject false person detections without discarding too many correct boxes. Grounding DINO candidates and tracking supplied ten-observation windows to an R3D18 video verifier; uncertain or incomplete windows remained unchanged.
+
+The recorded **RGB offline evaluation** covered 10,235 frames: one 2021 competition video and 17 VisDrone VID test-dev sequences. It contained 170,491 candidate boxes and 6,648 tracks, not independent people. Matching used IoU ≥ 0.5. The 23,689 ignored/ambiguous candidates were excluded from TP/FP denominators.
+
+| Recorded verifier | False-positive boxes removed / baseline FP | Correct boxes removed / baseline TP |
+| --- | ---: | ---: |
+| Earlier R3D18 | 6,432 / 85,837 (7.493%) | 12,358 / 60,965 (20.271%) |
+| Selected R3D18 | 5,858 / 85,837 (6.825%) | 286 / 60,965 (0.469%) |
+
+The selected configuration sacrificed some false-positive removal to preserve substantially more correct boxes. Reports record that model and thresholds were fixed before the long test. These percentages are box-filtering measures, **not mAP gains or overall recall**.
+
+The aggregate loss hid a limitation: occluded-person boxes lost **215 / 21,318 (1.009%)**. Small, occluded and stationary subgroups overlap; their counts must not be added together.
+
+On the recorded GTX 1660 Ti run, verification took **80.90 minutes**; detection/tracking plus verification took **192.42 minutes**. This was an offline second pass waiting for the tenth observation, **not real-time flight inference**. These historical team measurements are not an official competition score or a guarantee on new videos.
+
+</details>
+
 ## MOSAIC image classification research
 
 **Undergraduate Researcher · August–December 2025 · Completed**
@@ -95,5 +117,3 @@ During the university term, I must remain in Istanbul: I am available remotely M
 ---
 
 The project technology lists describe the respective systems. Individual technical experience is summarized in my CV and can be discussed in more detail during an interview.
-
-
