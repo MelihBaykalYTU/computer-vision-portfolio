@@ -74,7 +74,9 @@ In a two-person course project, we implemented and compared Gradient Descent, SG
 
 ## Opportunities
 
-Interested in computer vision and machine-learning internships or suitable early-career roles. Available remotely Monday–Wednesday and on-site Thursday–Friday. Istanbul is my preferred on-site location; remote opportunities may be based elsewhere.
+Interested in computer vision and machine-learning internships or suitable early-career roles. I can start immediately and prefer 24 hours per week, subject to an agreed schedule.
+
+During the university term, I must remain in Istanbul: I am available remotely Monday–Wednesday and on-site in Istanbul Thursday–Friday. On-site work in other cities or countries can only be considered outside the university term, with dates and arrangements agreed separately. Remote work from Istanbul with employers elsewhere can be considered subject to the applicable work eligibility and agreed terms.
 
 ---
 
