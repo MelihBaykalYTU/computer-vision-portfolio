@@ -12,6 +12,8 @@ My main focus is computer vision and deep learning: object detection, image clas
 
 I led a multidisciplinary team across all three competition tasks. The implementation details below describe our **team solution**.
 
+Our TEKNOFEST team used Roboflow for image annotation.
+
 | Task | Problem | Technical approach |
 | --- | --- | --- |
 | Object detection | Detect people and vehicles in RGB/thermal imagery; assess landing-zone suitability | Grounding DINO, tracking and landing-zone assessment |
@@ -93,4 +95,5 @@ During the university term, I must remain in Istanbul: I am available remotely M
 ---
 
 The project technology lists describe the respective systems. Individual technical experience is summarized in my CV and can be discussed in more detail during an interview.
+
 
