@@ -1,0 +1,339 @@
+{
+  "created_date": "2026-10-08",
+  "provenance": "New AI-assisted educational companion implemented on 2026-10-08, inspired by the 2024 joint coursework of Ceyda Tolunay and Melih Baykal. Not recovered original source code, not a historical result reproduction, and not a claim of Melih Baykal's individual historical performance.",
+  "original_report_limitations": [
+    "Data-preparation screenshot selects classes 1/6; training screenshot specifies 4/6.",
+    "Report prose alternates between 40 test samples total and 40 per class; screenshot shows 20 per class.",
+    "Original .c/.py files unavailable; historical plots/results not reproduced."
+  ],
+  "new_experiment": {
+    "classes": {
+      "0": "T-shirt/top (-1)",
+      "6": "Shirt (+1)"
+    },
+    "seed": 20261008,
+    "epochs": 10,
+    "counts": {
+      "train": {
+        "total": 1000,
+        "class_0": 500,
+        "class_6": 500,
+        "official_source": "train",
+        "index_sha256": "cfb6aa5116cf7a6162cfa2afac84f0f4b9689a9dfad66ee6eedca2b386fad524",
+        "prepared_csv_sha256": "ae28f1cbbeca1e41c9282563e0001a5e9f174c81f484176848cede568d66a982"
+      },
+      "validation": {
+        "total": 200,
+        "class_0": 100,
+        "class_6": 100,
+        "official_source": "train",
+        "index_sha256": "5f6750d2689913f19e66368b1cb39cdf1be644470cccfc0c4358e9242ee01755",
+        "prepared_csv_sha256": "10bc0e21f870dbf150a0f43fac7a1315da28126b374f3db36992156f0300da36"
+      },
+      "test": {
+        "total": 1000,
+        "class_0": 500,
+        "class_6": 500,
+        "official_source": "test",
+        "index_sha256": "0f8d0bf30242ede1c921e9e0c09c951b0f81b54f59fdaf5fd3ddad08db5f2f58",
+        "prepared_csv_sha256": "7bc8f356a506b1f7c2ac5c35ea1167998ebcb9e33eff7b31b7ba9443e29da6da"
+      }
+    },
+    "model": "tanh(w dot [1,pixels/255]), 785 parameters",
+    "loss": "mean(0.5 * (prediction - target)^2)",
+    "accuracy": "threshold tanh output at zero; labels -1/+1",
+    "selection": "Separate optimizer LR grids; lowest final-epoch validation loss only.",
+    "grids": {
+      "gd": [
+        0.001,
+        0.01,
+        0.1
+      ],
+      "sgd": [
+        1e-05,
+        0.0001,
+        0.001
+      ],
+      "adam": [
+        1e-05,
+        0.0001,
+        0.001
+      ]
+    },
+    "split_checks": {
+      "train_validation_indices_disjoint": true,
+      "test_uses_only_official_test_partition": true,
+      "preprocessing": "fixed pixels/255; no fitted statistics",
+      "test_not_read_by_C_during_tuning": true
+    },
+    "gd": "one mean full-batch gradient update per epoch",
+    "sgd": "one sample gradient update per training example; shuffled each epoch",
+    "adam": "one sample gradient update; beta1=.9,beta2=.999,epsilon=1e-8; bias correction",
+    "comparison_limits": "Same epoch budget, different update counts; independently tuned LRs. No claim of universally best optimizer or historical/personal achievement."
+  },
+  "verification": {
+    "gradient_max_abs_error": 2.949784860817317e-11,
+    "adam_first_step_max_abs_error": 6.938893903907228e-18,
+    "passed": true,
+    "compile_command_template": [
+      "gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "optimizer.c",
+      "-o",
+      "<work-dir>/optimizer.exe",
+      "-lm"
+    ],
+    "compiler_stdout": "",
+    "compiler_stderr": "",
+    "warnings_as_errors_passed": true,
+    "fixed_seed_reproducibility_all_optimizers": true,
+    "all_reported_losses_and_weights_finite": true,
+    "same_model_before_and_after_test_evaluation": true
+  },
+  "dataset_sources": [
+    {
+      "file": "train-images-idx3-ubyte.gz",
+      "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/train-images-idx3-ubyte.gz",
+      "md5": "8d4fb7e6c68d591d4c3dfef9ec88bf0d",
+      "sha256": "3aede38d61863908ad78613f6a32ed271626dd12800ba2636569512369268a84"
+    },
+    {
+      "file": "train-labels-idx1-ubyte.gz",
+      "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/train-labels-idx1-ubyte.gz",
+      "md5": "25c81989df183df01b3e8a0aad5dffbe",
+      "sha256": "a04f17134ac03560a47e3764e11b92fc97de4d1bfaf8ba1a3aa29af54cc90845"
+    },
+    {
+      "file": "t10k-images-idx3-ubyte.gz",
+      "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/t10k-images-idx3-ubyte.gz",
+      "md5": "bef4ecab320f06d8554ea6380940ec79",
+      "sha256": "346e55b948d973a97e58d2351dde16a484bd415d4595297633bb08f03db6a073"
+    },
+    {
+      "file": "t10k-labels-idx1-ubyte.gz",
+      "url": "https://raw.githubusercontent.com/zalandoresearch/fashion-mnist/master/data/fashion/t10k-labels-idx1-ubyte.gz",
+      "md5": "bb300cfdad3c16e7a12a480ee83cd310",
+      "sha256": "67da17c76eaffca5446c3361aaab5c3cd6d1c2608764d35dfb1850b086bf8dd5"
+    }
+  ],
+  "implementation": {
+    "optimizer_c_sha256": "88f5db0d3daf30f1d792090cdce1b6ad4f3c8e92fcc1204e2a433a387546c777",
+    "runner_python_sha256": "6754668f889f5253ddc1d0cf453112c120c2a4810b541dfb5396d3951de17b6d",
+    "python_version": "3.12.14",
+    "numpy_version": "2.5.3",
+    "matplotlib_version": "3.11.2",
+    "platform": "Windows AMD64",
+    "compiler_version": "gcc.exe (Rev3, Built by MSYS2 project) 13.2.0"
+  },
+  "dataset_license": {
+    "name": "MIT",
+    "copyright": "2017 Zalando SE",
+    "url": "https://github.com/zalandoresearch/fashion-mnist/blob/master/LICENSE",
+    "citation": "Han Xiao, Kashif Rasul, Roland Vollgraf (2017). Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms. arXiv:1708.07747."
+  },
+  "adam_reference": "Diederik P. Kingma and Jimmy Ba (2014), Adam: A Method for Stochastic Optimization. https://arxiv.org/abs/1412.6980",
+  "validation_trials": [
+    {
+      "optimizer": "gd",
+      "lr": 0.001,
+      "epochs": 10,
+      "updates": 10,
+      "train_loss": 0.4636191528584566,
+      "train_accuracy": 0.826,
+      "validation_loss": 0.46447084962100577,
+      "validation_accuracy": 0.805,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.073,
+      "wall_seconds": 0.6491406000004645,
+      "model_sha256": "8427096c9ec5a0d3b56d08fbfeaaa3e10f971678874e68e9451e37344f6562cc"
+    },
+    {
+      "optimizer": "gd",
+      "lr": 0.01,
+      "epochs": 10,
+      "updates": 10,
+      "train_loss": 0.3181244570415787,
+      "train_accuracy": 0.82,
+      "validation_loss": 0.3201383838098353,
+      "validation_accuracy": 0.83,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.051,
+      "wall_seconds": 0.4847725999989052,
+      "model_sha256": "ecf4ba9d2f27c4be4154479c9b7d929ab0212bee992abf0af77b7fcb3ed4b0f6"
+    },
+    {
+      "optimizer": "gd",
+      "lr": 0.1,
+      "epochs": 10,
+      "updates": 10,
+      "train_loss": 0.28927710711298565,
+      "train_accuracy": 0.827,
+      "validation_loss": 0.29325785202361276,
+      "validation_accuracy": 0.81,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.099,
+      "wall_seconds": 0.5701385000011214,
+      "model_sha256": "f7c8cc6eb9f210a11f3e33f5eded49f738a7a6a6b11cb51c72160f45f5435175"
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 1e-05,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.3209678129585207,
+      "train_accuracy": 0.821,
+      "validation_loss": 0.3231092516242785,
+      "validation_accuracy": 0.825,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.075,
+      "wall_seconds": 0.583075499998813,
+      "model_sha256": "961d97cce855e955dcd3f2867ae73d8b64cb9364958f5428bef18b3086459e86"
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 0.0001,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.23497767984046233,
+      "train_accuracy": 0.835,
+      "validation_loss": 0.24216541748662768,
+      "validation_accuracy": 0.83,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.066,
+      "wall_seconds": 0.5698210999998992,
+      "model_sha256": "3cc9ab9ab513c9770c2dfdb151a6488c758a1b603d5d8bfd1e15602d541ab55c"
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 0.001,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.191395641891451,
+      "train_accuracy": 0.88,
+      "validation_loss": 0.2396191733605151,
+      "validation_accuracy": 0.83,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.058,
+      "wall_seconds": 0.58560320000106,
+      "model_sha256": "f33373b8a5b148437b549e0bc18a18a39f57f242a5e9d3ff91a8aaff753099f6"
+    },
+    {
+      "optimizer": "adam",
+      "lr": 1e-05,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.2565920202015262,
+      "train_accuracy": 0.824,
+      "validation_loss": 0.2617628593824303,
+      "validation_accuracy": 0.825,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.123,
+      "wall_seconds": 0.42562510000061593,
+      "model_sha256": "c5439d4a5e8af5eb12ae984e42ef6c75565249624fde8145d7390aafff28844e"
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.0001,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.20030310951028468,
+      "train_accuracy": 0.864,
+      "validation_loss": 0.23652388537993774,
+      "validation_accuracy": 0.805,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.11,
+      "wall_seconds": 0.5658944999995583,
+      "model_sha256": "b3c2fcc6b643599c36bda680824f75c1801d7f117dd061e0f0d5afab2c6c9c8a"
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.17912506075854587,
+      "train_accuracy": 0.865,
+      "validation_loss": 0.28290654754763994,
+      "validation_accuracy": 0.815,
+      "test_evaluated": false,
+      "test_loss": 0,
+      "test_accuracy": 0,
+      "c_clock_seconds": 0.092,
+      "wall_seconds": 0.38775469999927736,
+      "model_sha256": "3130045b3818decf0232da10403697ffe892c52849405c9dba6fca4799fcc8f3"
+    }
+  ],
+  "selected_final_test_results": [
+    {
+      "optimizer": "gd",
+      "lr": 0.1,
+      "epochs": 10,
+      "updates": 10,
+      "train_loss": 0.28927710711298565,
+      "train_accuracy": 0.827,
+      "validation_loss": 0.29325785202361276,
+      "validation_accuracy": 0.81,
+      "test_evaluated": true,
+      "test_loss": 0.3336201843137317,
+      "test_accuracy": 0.797,
+      "c_clock_seconds": 0.073,
+      "wall_seconds": 0.9943652000001748,
+      "model_sha256": "f7c8cc6eb9f210a11f3e33f5eded49f738a7a6a6b11cb51c72160f45f5435175",
+      "fixed_seed_repeat_passed": true
+    },
+    {
+      "optimizer": "sgd",
+      "lr": 0.001,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.191395641891451,
+      "train_accuracy": 0.88,
+      "validation_loss": 0.2396191733605151,
+      "validation_accuracy": 0.83,
+      "test_evaluated": true,
+      "test_loss": 0.24275830609863985,
+      "test_accuracy": 0.83,
+      "c_clock_seconds": 0.082,
+      "wall_seconds": 0.9660533999995096,
+      "model_sha256": "f33373b8a5b148437b549e0bc18a18a39f57f242a5e9d3ff91a8aaff753099f6",
+      "fixed_seed_repeat_passed": true
+    },
+    {
+      "optimizer": "adam",
+      "lr": 0.0001,
+      "epochs": 10,
+      "updates": 10000,
+      "train_loss": 0.20030310951028468,
+      "train_accuracy": 0.864,
+      "validation_loss": 0.23652388537993774,
+      "validation_accuracy": 0.805,
+      "test_evaluated": true,
+      "test_loss": 0.24005708020230376,
+      "test_accuracy": 0.824,
+      "c_clock_seconds": 0.11,
+      "wall_seconds": 0.5142137000002549,
+      "model_sha256": "b3c2fcc6b643599c36bda680824f75c1801d7f117dd061e0f0d5afab2c6c9c8a",
+      "fixed_seed_repeat_passed": true
+    }
+  ],
+  "timing_note": "C clock() is a platform-dependent clock measurement, not asserted to be CPU time. CSV clocks include training and per-epoch evaluation; stdout clocks also include final model serialization/test evaluation. Python perf_counter wall_seconds includes process startup, data load and final test. Machine-dependent timings are excluded from deterministic checks."
+}
