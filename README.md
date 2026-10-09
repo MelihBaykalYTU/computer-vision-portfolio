@@ -108,6 +108,8 @@ The CPU-only pipeline combines ORB descriptors, Hamming matching, a ratio test a
 
 On its 24 synthetic test cases, the fixed configuration detected 8 of 12 positive cases and rejected all 12 negative cases. Small blurred targets and one occluded target exposed failures. These measurements describe this small experiment; the code and results are separate from the VEGA competition work.
 
+For optional installs using the package versions recorded in the educational demos, use Python 3.12.14 and a separate virtual environment for each companion. From the repository root, use `python -m pip install -r requirements-optimizer-recorded.txt` for [the optimizer snapshot](requirements-optimizer-recorded.txt), or `python -m pip install -r requirements-reference-recorded.txt` for [the reference-matching snapshot](requirements-reference-recorded.txt), then follow the corresponding demo's Run instructions. These snapshots pin top-level Python packages; transitive dependencies and the optimizer's compiler are not locked, and identical results across platforms are not guaranteed.
+
 ## Opportunities
 
 Interested in computer vision and machine-learning internships or suitable early-career roles. I can start immediately and prefer 24 hours per week, subject to an agreed schedule.

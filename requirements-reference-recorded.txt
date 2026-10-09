@@ -1,0 +1,7 @@
+# Top-level package versions recorded on 2026-10-08.
+# Source: demos/reference-matching-evaluation/run_summary.json, runtime.
+# OpenCV wheel revision: existing demo requirements and package METADATA.
+# Recorded Python: 3.12.14. Use a separate environment for this demo.
+# Transitive dependencies are not locked.
+numpy==2.3.5
+opencv-python-headless==4.13.0.92
